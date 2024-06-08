@@ -1,0 +1,27 @@
+{
+  "name": "C++ & CMake Development Environment",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+
+  "containerEnv": {
+    "SHELL": "/bin/bash"
+},
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+      },
+      "extensions": ["ms-vscode.cpptools",
+                     "ms-vscode.cpptools-extension-pack",
+                     "ms-vscode.cmake-tools"]
+        }
+      },
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+
+  "remoteUser": "vscode",
+  "postCreateCommand": ""
+}
+
