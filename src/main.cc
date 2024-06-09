@@ -1,20 +1,13 @@
 #include "observer.hpp"
 #include "observable.hpp"
 #include <iostream>
-
-class CoutObserver: public Observer<int>{
-  public:
-    CoutObserver(Observable<int>* subject): Observer<int>(subject){
-
-    };
-    void Update(const int& x) override {
-        std::cout << "value is " << x << std::endl;
-    }
+void handle(const int& x){
+    std::cout << "value = " << x << std::endl;
 };
 
 int main(){
     Observable<int> int_data;
-    CoutObserver observer(&int_data);
+    Observer<int> observer(&int_data, &handle);
     int_data = 10;
     int_data = 12;
 }
