@@ -7,8 +7,6 @@
 template <class T>
 class Observable {
   public:
-    using Ptr = Observable*;
-
     Observable() = default;
     //TODO: fix raw pointer usage.
     void Subscribe(Observer<T>* observer) {
