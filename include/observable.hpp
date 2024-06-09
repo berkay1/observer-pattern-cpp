@@ -13,6 +13,10 @@ class Observable {
         observers_.insert(observer);
     }
 
+    void Unsubscribe(Observer<T>* observer) {
+        observers_.erase(observer);
+    }
+
     void operator=(const T& data) {
         for (auto observer : observers_) {
             observer->Update(data);

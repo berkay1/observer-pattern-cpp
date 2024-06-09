@@ -14,7 +14,10 @@ public:
     explicit Observer(Observable<T>* observable, Handle handle): handle_(handle) {
         observable->Subscribe(this);
     };
-    virtual ~Observer() = default;
+
+    virtual ~Observer(){
+        observable_->Unsubscribe(this);
+    };
 
     void Update(const T& value){
         handle_(value);
