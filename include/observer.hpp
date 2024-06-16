@@ -1,13 +1,14 @@
 #ifndef OBSERVER_HPP_
 #define OBSERVER_HPP_
 
+#include "i_observer.hpp"
 #include <functional>
 
 template <typename T>
 class Observable;
 
 template <typename T>
-class Observer {
+class Observer: public IObserver<T> {
   public:
     using Handle = std::function<void(const T&)>;
     
@@ -20,7 +21,7 @@ class Observer {
             observable_->Unsubscribe(this);
     };
 
-    void Update(const T& value){
+    void Update(const T& value) override {
         handle_(value);
     };
 

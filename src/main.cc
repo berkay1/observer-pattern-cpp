@@ -7,7 +7,7 @@ void handle(const int& x){
 
 int main(){
     Observable<int> int_data;
-    Observer<int> observer(&int_data, &handle);
+    const IObserver<int>& observer = Observer<int>(&int_data, &handle);
     int_data = 10;
     int_data = 12;
 }
