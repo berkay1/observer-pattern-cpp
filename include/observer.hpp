@@ -1,5 +1,5 @@
-#ifndef OBSERVER_H_
-#define OBSERVER_H_
+#ifndef OBSERVER_HPP_
+#define OBSERVER_HPP_
 
 #include <functional>
 
@@ -8,15 +8,16 @@ class Observable;
 
 template <typename T>
 class Observer {
-public:
+  public:
     using Handle = std::function<void(const T&)>;
-    //TODO: fix raw pointer usage
+    
     explicit Observer(Observable<T>* observable, Handle handle): handle_(handle) {
         observable->Subscribe(this);
     };
 
     virtual ~Observer(){
-        observable_->Unsubscribe(this);
+        if(!observable_)
+            observable_->Unsubscribe(this);
     };
 
     void Update(const T& value){
@@ -28,4 +29,4 @@ private:
     std::function<void(T)> handle_;
 };
 
-#endif // OBSERVER_H_
+#endif // OBSERVER_HPP_
